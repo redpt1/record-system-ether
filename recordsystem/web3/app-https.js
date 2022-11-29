@@ -4,11 +4,7 @@ var web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 var fs = require("fs");
 var data = fs.readFileSync("../RecordSystem_sol_RecordSystem.abi", "utf-8");
 
-
-
 const https = require("https");
-
-
 
 const bodyParser = require("body-parser");
 const bent = require('bent');
@@ -17,12 +13,9 @@ var privateKey  = fs.readFileSync('key.pem', 'utf8');
 var certificate = fs.readFileSync('cert.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
-
-
 var contract = new web3.eth.Contract(JSON.parse(data),'0x2CC92997E0A396e4Eb5D504d2D2EdEb46cA773ED');
 
 var express = require('express')
-
 
 var server = express()
 server.use(bodyParser.json());
@@ -79,8 +72,6 @@ server.post('/get',function(request, response) {
   })
 });
 
-
-
 server.post('/create',function(request, response) {
   var name = request.body.PatientName;
   var intime = request.body.In_time;
@@ -111,8 +102,6 @@ server.post('/create',function(request, response) {
   const headers = {"content-type": "application/x-www-form-urlencoded"};
   const post = bent(requestUrl,'POST','string');
   const res = post('/get',formurlencoded(data),headers);
-  
-  
 });
 
 server.post('/search', function (request, response) {
@@ -127,7 +116,6 @@ server.post('/search', function (request, response) {
      reject(error);
   }
   });
-
     searchRequest.then((record)=>
   { 
     	var json={};
@@ -144,8 +132,6 @@ server.post('/search', function (request, response) {
   }
 );
 });
-
-
 
 var SSLPORT = 4040;
 httpsServer.listen(SSLPORT)

@@ -8,13 +8,9 @@ const bodyParser = require("body-parser");
 const bent = require('bent');
 const formurlencoded = require('form-urlencoded');
 
-
-
-
 var contract = new web3.eth.Contract(JSON.parse(data),'0x2CC92997E0A396e4Eb5D504d2D2EdEb46cA773ED');
 
 var express = require('express')
-
 
 var server = express()
 server.use(bodyParser.json());
@@ -135,8 +131,6 @@ server.post('/search', function (request, response) {
   }
 );
 });
-
-
 
 
 server.listen(4040)
